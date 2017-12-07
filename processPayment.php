@@ -11,8 +11,8 @@ use Flutterwave\Rave\EventHandlerInterface;
 $URL = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://'.$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI];
 $getData = $_GET;
 $postData = $_POST;
-$publicKey = 'FLWPUBK-30c9131441f514040de3f373cb8e7b0f-X'; // Remember to change this to your live public keys when going live
-$secretKey = 'FLWSECK-1889819986afe99153705835364f3490-X'; // Remember to change this to your live secret keys when going live
+$publicKey = '****YOUR**PUBLIC**KEY****'; // Remember to change this to your live public keys when going live
+$secretKey = '****YOUR**SECRET**KEY****'; // Remember to change this to your live secret keys when going live
 $env = 'staging'; // Remember to change this to 'live' when you are going live
 $prefix = 'MY_NAME'; // Change this to the name of your business
 $overrideRef = false;
