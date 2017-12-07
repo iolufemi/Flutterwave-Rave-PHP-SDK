@@ -26,6 +26,7 @@ $overrideRef = false;
 $payment = new Rave($publicKey, $secretKey, $prefix, $env, $overrideRef);
 
 
+// This is where you set how you want to handle the transaction at different stages
 class myEventHandler implements EventHandlerInterface{
     /**
      * This is called when the Rave class is initialized
@@ -93,8 +94,8 @@ if($postData['amount']){
     ->setPhoneNumber($postData['phonenumber'])
     ->setPayButtonText($postData['pay_button_text'])
     ->setRedirectUrl($URL)
-    ->setMetaData(array('metaname' => 'SomeDataName', 'metavalue' => 'SomeValue')) // can be called multiple times. Uncomment this to add meta datas
-    ->setMetaData(array('metaname' => 'SomeOtherDataName', 'metavalue' => 'SomeOtherValue')) // can be called multiple times. Uncomment this to add meta datas
+    // ->setMetaData(array('metaname' => 'SomeDataName', 'metavalue' => 'SomeValue')) // can be called multiple times. Uncomment this to add meta datas
+    // ->setMetaData(array('metaname' => 'SomeOtherDataName', 'metavalue' => 'SomeOtherValue')) // can be called multiple times. Uncomment this to add meta datas
     ->initialize();
 }else{
     if($getData['txref']){
