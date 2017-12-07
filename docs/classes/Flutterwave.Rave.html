@@ -240,6 +240,12 @@
     </li>
 
                                                                                                         <li class="method public">
+        <a href="#method_paymentCanceled" title="paymentCanceled :: Handle canceled payments with this method">
+            <span class="description">Handle canceled payments with this method</span><pre>paymentCanceled</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
         <a href="#method_requeryTransaction" title="requeryTransaction :: Requerys a previous transaction from the Rave payment gateway">
             <span class="description">Requerys a previous transaction from the Rave payment gateway</span><pre>requeryTransaction</pre>
         </a>
@@ -333,11 +339,11 @@
         </li>
         <li class="nav-header protected">» Protected
             <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
         </li>
         <li class="nav-header private">» Private
             <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
         </li>
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
@@ -978,6 +984,33 @@
                                     
                                                                             <h3>Response</h3>
                                         <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_paymentCanceled"></a>
+                        <div class="element clickable method public  method_paymentCanceled" data-toggle="collapse" data-target=".method_paymentCanceled .collapse">
+                            <h2>Handle canceled payments with this method</h2>
+                            <pre>paymentCanceled(string $referenceNumber) : object</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$referenceNumber</h4>
+                                                <code>string</code><p><p>This should be the reference number of the transaction that was canceled</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>object</code><p></p>
                                                                     </div>
                             </div>
 
@@ -2085,7 +2118,7 @@
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Thu, 07 Dec 2017 19:42:32 +0000.<br/>
+            generated on Thu, 07 Dec 2017 21:58:38 +0000.<br/>
     </footer>
     </body>
 </html>

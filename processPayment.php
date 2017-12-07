@@ -76,6 +76,14 @@ class myEventHandler implements EventHandlerInterface{
         // Do something, anything!
         echo 'An error occured while requeying the transaction...'.json_encode($requeryResponse).'<br />';
     }
+    
+    /**
+     * This is called when a transaction is canceled by the user
+     * */
+    function onCancel($transactionReference){
+        // Do something, anything!
+        echo 'Payment canceled by user......'.$transactionReference.'<br />';
+    }
 }
 
 if($postData['amount']){
@@ -98,8 +106,14 @@ if($postData['amount']){
     // ->setMetaData(array('metaname' => 'SomeOtherDataName', 'metavalue' => 'SomeOtherValue')) // can be called multiple times. Uncomment this to add meta datas
     ->initialize();
 }else{
-    if($getData['txref']){
+    if($getData['cancelled'] && $getData['txref']){
+        $payment
+        ->eventHandler(new myEventHandler)
+        ->requeryTransaction($getData['txref'])
+        ->paymentCanceled($getData['txref']);
+    }elseif($getData['txref']){
         $payment->logger->notice('Payment completed. Now requerying payment.');
+        
         $payment
         ->eventHandler(new myEventHandler)
         ->requeryTransaction($getData['txref']);

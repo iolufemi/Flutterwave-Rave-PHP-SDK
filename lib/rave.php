@@ -77,7 +77,7 @@ class Rave {
         
         $this->logger->notice('Rave Class Initializes....');
         
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -133,7 +133,7 @@ class Rave {
         }else{
             $this->txref = uniqid($this->transactionPrefix);
         }
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -151,7 +151,7 @@ class Rave {
      * */
     function setAmount($amount){
         $this->amount = $amount;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -159,7 +159,7 @@ class Rave {
      * @return string
      * */
     function getAmount(){
-        return $this->amount;
+        return $this;
     }
     
     /**
@@ -169,7 +169,7 @@ class Rave {
      * */
     function setPaymentMethod($paymentMethod){
         $this->paymentMethod = $paymentMethod;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -177,7 +177,7 @@ class Rave {
      * @return string
      * */
     function getPaymentMethod(){
-        return $this->paymentMethod;
+        return $this;
     }
     
     /**
@@ -187,7 +187,7 @@ class Rave {
      * */
     function setDescription($customDescription){
         $this->customDescription = $customDescription;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -205,7 +205,7 @@ class Rave {
      * */
     function setLogo($customLogo){
         $this->customLogo = $customLogo;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -223,7 +223,7 @@ class Rave {
      * */
     function setTitle($customTitle){
         $this->customTitle = $customTitle;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -241,7 +241,7 @@ class Rave {
      * */
     function setCountry($country){
         $this->country = $country;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -259,7 +259,7 @@ class Rave {
      * */
     function setCurrency($currency){
         $this->currency = $currency;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -277,7 +277,7 @@ class Rave {
      * */
     function setEmail($customerEmail){
         $this->customerEmail = $customerEmail;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -295,7 +295,7 @@ class Rave {
      * */
     function setFirstname($customerFirstname){
         $this->customerFirstname = $customerFirstname;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -313,7 +313,7 @@ class Rave {
      * */
     function setLastname($customerLastname){
         $this->customerLastname = $customerLastname;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -331,7 +331,7 @@ class Rave {
      * */
     function setPhoneNumber($customerPhone){
         $this->customerPhone = $customerPhone;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -349,7 +349,7 @@ class Rave {
      * */
     function setPayButtonText($payButtonText){
         $this->payButtonText = $payButtonText;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -367,7 +367,7 @@ class Rave {
      * */
     function setRedirectUrl($redirectUrl){
         $this->redirectUrl = $redirectUrl;
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -385,7 +385,7 @@ class Rave {
      * */
     function setMetaData($meta){
         array_push($this->meta, $meta);
-        return $this->createCheckSum();
+        return $this;
     }
     
     /**
@@ -439,28 +439,23 @@ class Rave {
                 $this->logger->notice('Requeryed a successful transaction....'.json_encode($response->body->data));
                 // Handle successful
                 if(isset($this->handler)){
-                    return $this->handler->onSuccessful($response->body->data);
-                }else{
-                    return $response->body->data;
+                    $this->handler->onSuccessful($response->body->data);
                 }
             }else{
                 // Handle Failure
                 $this->logger->notice('Requeryed a failed transaction....'.json_encode($response->body->data));
                 if(isset($this->handler)){
-                    return $this->handler->onFailure($response->body->data);
-                }else{
-                    return $response->body->data;
+                    $this->handler->onFailure($response->body->data);
                 }
             }
         }else{
             $this->logger->warn('Requery call returned error for transaction reference.....'.json_encode($response->body).'Transaction Reference: '. $this->txref);
             // Handle Requery Error
             if(isset($this->handler)){
-                return $this->handler->onRequeryError($response->body);
-            }else{
-                return $response->body;
+                $this->handler->onRequeryError($response->body);
             }
         }
+        return $this;
     }
     
     /**
@@ -468,6 +463,7 @@ class Rave {
      * @return string
      * */
     function initialize(){
+        $this->createCheckSum();
         $this->transactionData = array_merge($this->transactionData, array('integrity_hash' => $this->integrityHash), array('meta' => $this->meta));
         
         if(isset($this->handler)){
@@ -489,6 +485,20 @@ class Rave {
         echo '</html>';
 
         return $json;
+    }
+    
+    /**
+     * Handle canceled payments with this method
+     * @param string $referenceNumber This should be the reference number of the transaction that was canceled
+     * @return object
+     * */
+    function paymentCanceled($referenceNumber){
+        $this->txref = $referenceNumber;
+        $this->logger->notice('Payment was canceled by user..'.$this->txref);
+        if(isset($this->handler)){
+            $this->handler->onCancel($this->txref);
+        }
+        return $this;
     }
     
 }

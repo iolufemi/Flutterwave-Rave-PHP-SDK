@@ -43,5 +43,11 @@ interface EventHandlerInterface{
      * @param string $requeryResponse This is the error response gotten from the Rave payment gateway requery call
      * */
     function onRequeryError($requeryResponse);
+    
+    /**
+     * This is called when a transaction is canceled by the user
+     * @param string $transactionReference This is the transaction reference as returned from the Rave payment gateway
+     * */
+    function onCancel($transactionReference);
 }
 ?>
