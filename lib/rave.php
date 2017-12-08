@@ -53,7 +53,8 @@ class Rave {
      * @param string $publicKey Your Rave publicKey. Sign up on https://rave.flutterwave.com to get one from your settings page
      * @param string $secretKey Your Rave secretKey. Sign up on https://rave.flutterwave.com to get one from your settings page
      * @param string $prefix This is added to the front of your transaction reference numbers
-     * @param string $env This can either bu 'staging' or 'live'
+     * @param string $env This can either be 'staging' or 'live'
+     * @param boolean $overrideRefWithPrefix Set this parameter to true to use your prefix as the transaction reference
      * @return object
      * */
     function __construct($publicKey, $secretKey, $prefix, $env = 'staging', $overrideRefWithPrefix = false){
