@@ -401,7 +401,7 @@ class Rave {
     
     /**
      * Sets the event hooks for all available triggers
-     * @param class $handler This is a class that implements the Event Handler Interface
+     * @param object $handler This is a class that implements the Event Handler Interface
      * @return object
      * */
     function eventHandler($handler){
