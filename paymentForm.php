@@ -13,8 +13,8 @@
             <input type="hidden" name="firstname" value="Olufemi" /> <!-- Replace the value with your customer firstname -->
             <input type="hidden" name="lastname"value="Olanipekun" /> <!-- Replace the value with your customer lastname -->
             <input type="hidden" name="phonenumber" value="08098787676" /> <!-- Replace the value with your customer phonenumber -->
-            <input type="hidden" name="pay_button_text" value="Complete Payment" /> <!-- Replace the value the payment button text you prefer -->
-            <input type="hidden" name="ref" value="MY_NAME_5a2a7f270ac98" /> <!-- Replace the value the payment button text your transaction reference. It must be unique per transaction. You can delete this line if you want one to be generated for you. -->
+            <input type="hidden" name="pay_button_text" value="Complete Payment" /> <!-- Replace the value with the payment button text you prefer -->
+            <input type="hidden" name="ref" value="MY_NAME_5a2a7f270ac98" /> <!-- Replace the value with your transaction reference. It must be unique per transaction. You can delete this line if you want one to be generated for you. -->
             <input type="submit" value="Submit" style="display:none;" />
         </form>
         <script type="text/javascript" >
