@@ -12,15 +12,28 @@ The vendor folder is committed into the project to allow easy installation for t
 It is recommended to update the project dependencies using;
 
 ```shell
-
 $ composer install
-
 ```
 
 ## Sample implementation
 
-```php
+In this implementation, we are expecting a form encoded POST request to this script.
+The request will contain the following parameters.
 
+- payment_method `Can be card, account, both`
+- description `Your transaction description`
+- logo `Your logo url`
+- title `Your transaction title`
+- country `Your transaction country`
+- currency `Your transaction currency`
+- email `Your customer's email`
+- firstname `Your customer's firstname`
+- lastname `Your customer's lastname`
+- phonenumber `Your customer's phonenumber`
+- pay_button_text `The payment button text you prefer`
+- ref `Your transaction reference. It must be unique per transaction.  By default, the Rave class generates a unique transaction reference for each transaction. Pass this parameter only if you uncommented the related section in the script below.`
+
+```php
 // Prevent direct access to this class
 define("BASEPATH", 1);
 
@@ -157,8 +170,6 @@ if($postData['amount']){
         echo 'Stop!!! Please pass the txref parameter!';
     }
 }
-
-
 ```
 
 You can also find the class documentation in the docs folder. There you will find documentation for the `Rave` class and the `EventHandlerInterface`.
