@@ -1,5 +1,7 @@
 # Rave PHP SDK :wink:
 
+> Class documentation can be found here [https://iolufemi.github.io/Flutterwave-Rave-PHP-SDK/packages/Default.html](https://iolufemi.github.io/Flutterwave-Rave-PHP-SDK/packages/Default.html)
+
 Use this library to integrate your PHP app to Rave.
 
 Edit the `paymentForm.php` and `processPayment.php` files to suit your purpose. Both files are well documented.
