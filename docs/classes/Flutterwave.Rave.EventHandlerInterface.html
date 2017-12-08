@@ -155,15 +155,21 @@
         </a>
     </li>
 
+                                                                                                        <li class="method public">
+        <a href="#method_onTimeout" title="onTimeout :: This is called when a transaction doesn&#039;t return with a success or a failure response.">
+            <span class="description">This is called when a transaction doesn&#039;t return with a success or a failure response.</span><pre>onTimeout</pre>
+        </a>
+    </li>
+
                                                 </ul>
         </li>
         <li class="nav-header protected">» Protected
             <ul>
-                                                                                                                                                                                                                                                                    </ul>
+                                                                                                                                                                                                                                                                                                        </ul>
         </li>
         <li class="nav-header private">» Private
             <ul>
-                                                                                                                                                                                                                                                                    </ul>
+                                                                                                                                                                                                                                                                                                        </ul>
         </li>
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
@@ -410,6 +416,51 @@ transaction is successful, failed, requeried and when a requery fails.</p>
                             </div>
 
                         </div>
+                                            <a id="method_onTimeout"></a>
+                        <div class="element clickable method public  method_onTimeout" data-toggle="collapse" data-target=".method_onTimeout .collapse">
+                            <h2>This is called when a transaction doesn&#039;t return with a success or a failure response.</h2>
+                            <pre>onTimeout(string $transactionReference,  $data) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    data
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>object $data This is the data returned from the requery call.</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$transactionReference</h4>
+                                                <code>string</code><p><p>This is the transaction reference as returned from the Rave payment gateway</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
                     
                     
                                                         </div>
@@ -432,7 +483,7 @@ transaction is successful, failed, requeried and when a requery fails.</p>
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Thu, 07 Dec 2017 21:58:38 +0000.<br/>
+            generated on Fri, 08 Dec 2017 16:43:57 +0000.<br/>
     </footer>
     </body>
 </html>
