@@ -49,5 +49,12 @@ interface EventHandlerInterface{
      * @param string $transactionReference This is the transaction reference as returned from the Rave payment gateway
      * */
     function onCancel($transactionReference);
+    
+    /**
+     * This is called when a transaction doesn't return with a success or a failure response.
+     * @param string $transactionReference This is the transaction reference as returned from the Rave payment gateway
+     * @data object $data This is the data returned from the requery call.
+     * */
+    function onTimeout($transactionReference,$data);
 }
 ?>

@@ -46,6 +46,7 @@ class Rave {
     protected $baseUrl;
     protected $transactionData;
     protected $overrideTransactionReference;
+    protected $requeryCount = 0;
     
     /**
      * Construct
@@ -133,6 +134,7 @@ class Rave {
         }else{
             $this->txref = uniqid($this->transactionPrefix);
         }
+        $this->logger->notice('Generated Reference Number....'.$this->txref);
         return $this;
     }
     
@@ -413,39 +415,55 @@ class Rave {
      * */
     function requeryTransaction($referenceNumber){
         $this->txref = $referenceNumber;
+        $this->requeryCount++;
         $this->logger->notice('Requerying Transaction....'.$this->txref);
         if(isset($this->handler)){
             $this->handler->onRequery($this->txref);
         }
 
         $data = array(
-            'tx_ref' => $this->txref,
+            'txref' => $this->txref,
             'SECKEY' => $this->secretKey,
-            'last_attempt' => '1',
-            'only_successful' => '1'
+            'last_attempt' => '1'
+            // 'only_successful' => '1'
         );
 
         // make request to endpoint using unirest.
         $headers = array('Content-Type' => 'application/json');
         $body = Body::json($data);
-        $url = $this->baseUrl.'/flwv3-pug/getpaidx/api/verify';
+        $url = $this->baseUrl.'/flwv3-pug/getpaidx/api/xrequery';
 
         // Make `POST` request and handle response with unirest
         $response = Request::post($url, $headers, $body);
   
         //check the status is success
-        if ($response->body->status === "success") {
-            if($response->body->data->status === 'successful'){
+        if ($response->body && $response->body->status === "success") {
+            if($response->body && $response->body->data && $response->body->data->status === "successful"){
                 $this->logger->notice('Requeryed a successful transaction....'.json_encode($response->body->data));
                 // Handle successful
                 if(isset($this->handler)){
                     $this->handler->onSuccessful($response->body->data);
                 }
-            }else{
+            }elseif($response->body && $response->body->data && $response->body->data->status === "failed"){
                 // Handle Failure
-                $this->logger->notice('Requeryed a failed transaction....'.json_encode($response->body->data));
+                $this->logger->warn('Requeryed a failed transaction....'.json_encode($response->body->data));
                 if(isset($this->handler)){
                     $this->handler->onFailure($response->body->data);
+                }
+            }else{
+                // Handled an undecisive transaction. Probably timed out.
+                $this->logger->warn('Requeryed an undecisive transaction....'.json_encode($response->body->data));
+                // I will requery again here. Just incase we have some devs that cannot setup a queue for requery. I don't like this.
+                if($this->requeryCount > 4){
+                    // Now you have to setup a queue by force. We couldn't get a status in 5 requeries.
+                    if(isset($this->handler)){
+                        $this->handler->onTimeout($this->txref, $response->body);
+                    }
+                }else{
+                    $this->logger->notice('delaying next requery for 3 seconds');
+                    sleep(3);
+                    $this->logger->notice('Now retrying requery...');
+                    $this->requeryTransaction($this->txref);
                 }
             }
         }else{
