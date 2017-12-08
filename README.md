@@ -135,6 +135,7 @@ class myEventHandler implements EventHandlerInterface{
 }
 
 if($postData['amount']){
+    // Make payment
     $payment
     ->eventHandler(new myEventHandler)
     ->setAmount($postData['amount'])
@@ -155,11 +156,13 @@ if($postData['amount']){
     ->initialize();
 }else{
     if($getData['cancelled'] && $getData['txref']){
+        // Handle canceled payments
         $payment
         ->eventHandler(new myEventHandler)
         ->requeryTransaction($getData['txref'])
         ->paymentCanceled($getData['txref']);
     }elseif($getData['txref']){
+        // Handle completed payments
         $payment->logger->notice('Payment completed. Now requerying payment.');
         
         $payment
