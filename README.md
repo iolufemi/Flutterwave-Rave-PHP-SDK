@@ -1,6 +1,6 @@
 # Rave PHP SDK :wink:
 
-> Class documentation can be found here [https://iolufemi.github.io/Flutterwave-Rave-PHP-SDK/packages/Default.html](https://iolufemi.github.io/Flutterwave-Rave-PHP-SDK/packages/Default.html)
+> Class documentation can be found here [https://flutterwave.github.io/Flutterwave-Rave-PHP-SDK/packages/Default.html](https://flutterwave.github.io/Flutterwave-Rave-PHP-SDK/packages/Default.html)
 
 Use this library to integrate your PHP app to Rave.
 
