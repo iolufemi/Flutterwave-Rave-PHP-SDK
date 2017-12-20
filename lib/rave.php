@@ -3,9 +3,9 @@
 namespace Flutterwave;
 
 // Prevent direct access to this class
-defined('BASEPATH') OR exit('No direct script access allowed');
+// defined('BASEPATH') OR exit('No direct script access allowed'); // Uncomment this link if you need this
 
-// require __DIR__.'/../vendor/autoload.php'; Uncomment this autoloader if you need it
+// require __DIR__.'/../vendor/autoload.php'; // Uncomment this autoloader if you need it
 
 use Monolog\Logger;
 use Monolog\Handler\RotatingFileHandler;
