@@ -41,7 +41,7 @@ class Rave {
     protected $transactionPrefix;
     public $logger;
     protected $handler;
-    protected $stagingUrl = 'https://rave-api-v2.herokuapp.com';
+    protected $stagingUrl = 'https://ravesandboxapi.flutterwave.com';
     protected $liveUrl = 'https://api.ravepay.co';
     protected $baseUrl;
     protected $transactionData;
