@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <form method="POST" action="/processPayment.php" id="paymentForm">
+        <form method="POST" action="https://rave-stan.herokuapp.com/processPayment.php" id="paymentForm">
             <input type="hidden" name="amount" value="200" /> <!-- Replace the value with your transaction amount -->
             <input type="hidden" name="payment_method" value="both" /> <!-- Can be card, account, both (optional) -->
             <input type="hidden" name="description" value="I Phone X, 100GB, 32GB RAM" /> <!-- Replace the value with your transaction description -->

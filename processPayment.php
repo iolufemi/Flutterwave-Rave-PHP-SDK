@@ -75,7 +75,7 @@ class myEventHandler implements EventHandlerInterface{
         // You can also redirect to your success page from here
         if($transactionData->chargecode === '00' || $transactionData->chargecode === '0'){
           if($transactionData->currency == $_SESSION['currency'] && $transactionData->amount == $_SESSION['amount']){
-              $params = array_merge($_GET, array("test" => "testvalue"));
+              
               if($_SESSION['publicKey']){
                     header('Location: '.getURL($_SESSION['successurl'], array('event' => 'successful')));
                     $_SESSION = array();
